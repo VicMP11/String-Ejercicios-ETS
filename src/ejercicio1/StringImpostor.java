@@ -113,8 +113,15 @@ public class StringImpostor {
      *
      * @return UNA NUEVA STRING, a partir de la anterior
      */
-    public static String CortarString(String s, int a, int b){
-        return "";
+    public static String CortarString(String s, int a, int b) {
+        String resultado = "";
+            if (s == null || s.isEmpty() || a < 0 || b > s.length()) {
+                resultado = "";
+            }
+            for (int i = a; i < b; i++) {
+                resultado += s.charAt(i);
+            }
+            return resultado;
     }
 
 
