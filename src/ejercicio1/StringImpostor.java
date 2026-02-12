@@ -81,8 +81,26 @@ public class StringImpostor {
      * @return la String sin espacios al princpio y al final
      */
     public static String SinSangria(String s){
-        return "";
+        String resultado = "";
+        if (s == null || s.isEmpty()) {
+            resultado = "";
+        }
+
+        int inicio = 0;
+        int fin = s.length() - 1;
+
+        while (inicio <= fin && s.charAt(inicio) == ' ') {
+            inicio++;
+        }
+        while (fin >= inicio && s.charAt(fin) == ' ') {
+            fin--;
+        }
+        for (int i = inicio; i <= fin; i++) {
+            resultado += s.charAt(i);
+        }
+        return resultado;
     }
+
 
     /**
      * Método SubString()
