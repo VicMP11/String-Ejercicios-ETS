@@ -24,9 +24,15 @@ public class EjerciciosString {
      * @return el numero total de veces que aparece 'c'
      */
     public static int ContarLetra(String s, char c) {
-        return 0;
-    }
+        int contador = 0;
+        for (int i = 0; i < s.length(); i++) {
 
+            if (s.charAt(i) == c) {
+                contador++;
+            }
+        }
+        return contador;
+    }
 
     /**
      *  Ejercicio 2: Desarrollar un método llamado Filtrar1 que, a partir de dos Strings,
@@ -46,9 +52,36 @@ public class EjerciciosString {
      *
      */
     public static String Filtrar1 (String s1, String s2){
-        return "";
-    }
-
+            String resultado = "";
+            String palabra = "";
+            s1 = s1 + " ";
+            for (int i = 0; i < s1.length(); i++) {
+                if (s1.charAt(i) != ' ') {
+                    palabra += s1.charAt(i);
+                } else {
+                    boolean encontrar = false;
+                    for (int j = 0; j <= palabra.length() - s2.length(); j++) {
+                        int contador = 0;
+                        for (int k = 0; k < s2.length(); k++) {
+                            if (palabra.charAt(j + k) == s2.charAt(k)) {
+                                contador++;
+                            }
+                        }
+                        if (contador == s2.length()) {
+                            encontrar = true;
+                        }
+                    }
+                    if (encontrar) {
+                        if (!resultado.equals("")) {
+                            resultado += " ";
+                        }
+                        resultado += palabra;
+                    }
+                    palabra = "";
+                }
+            }
+            return resultado;
+        }
 
     /**
      *   Ejercicio 3: Desarrollar un método llamado Filtrar2 que, a partir de dos Strings,
