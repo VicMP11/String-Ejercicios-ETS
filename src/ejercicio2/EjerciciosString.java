@@ -151,7 +151,34 @@ public class EjerciciosString {
      * @return Los correos validos
      */
     public static String FiltrarCorreo (String s1, String s2){
-        return "";
+        String resultado = "";
+        String correo = "";
+        //1º leer a partir del @ el dominio del correo
+        for(int i = 0; i < s1.length(); i++){
+            if(s1.charAt(i) != ' '){
+                correo += s1.charAt(i);
+            }
+            else{
+                //2 buscar espacio para comprobar el correo
+                if(correo.contains(s2)){
+                    if(!resultado.equals("")){
+                        resultado += " ";
+                    }
+                    resultado += correo;
+                }
+                correo = "";
+            }
+        }
+        //3 Comprobar tambien el ultimo correo que me dan
+        if(!correo.equals("")){
+            if(correo.contains(s2)){
+                if(!resultado.equals("")){
+                    resultado += " ";
+                }
+                resultado += correo;
+            }
+        }
+        return resultado;
     }
 
 
