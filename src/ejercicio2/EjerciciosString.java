@@ -101,7 +101,43 @@ public class EjerciciosString {
      *
      */
     public static String Filtrar2 (String s1, String s2){
-        return "";
+        String resultado = "";
+        String palabra = "";
+
+        //1 Recorrer el String cada caracter a
+        for(int i = 0; i < s1.length(); i++){
+            if(s1.charAt(i) != ' '){
+                //2 caracter a caracter se va creando la palabra que toque
+                palabra += s1.charAt(i);
+            }
+            else{
+                //3 cuando haya espacio, comprobar palabra
+                if(palabra.length() >= s2.length()){
+                    String inicio = palabra.substring(0, s2.length());
+                    if(inicio.equals(s2)){
+                        if(!resultado.equals("")){
+                            resultado += " ";
+                        }
+                        resultado += palabra;
+                    }
+                }
+                //4 guardamos la palabra y despuyes borramos para que no se acumule¿?
+                palabra = "";
+            }
+        }
+        //5 Comprobar la ultima palabra (ya que no termina en espacio)
+        if(!palabra.equals("")){
+            if(palabra.length() >= s2.length()){
+                String inicio = palabra.substring(0, s2.length());
+                if(inicio.equals(s2)){
+                    if(!resultado.equals("")){
+                        resultado += " ";
+                    }
+                    resultado += palabra;
+                }
+            }
+        }
+        return resultado;
     }
 
 
