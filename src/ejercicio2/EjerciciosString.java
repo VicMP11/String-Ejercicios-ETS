@@ -195,7 +195,37 @@ public class EjerciciosString {
      *
      */
     public static String FiltrarIP (String s1, String s2){
-        return "";
+        String resultado = "";
+        String ip = "";
+
+        //1 recorrer el string caracter por caracter
+        for(int i = 0; i < s1.length(); i++){
+            //2 ir reahciendo cada IP hasta encontrar un espacio
+            if(s1.charAt(i) != ' '){
+                ip += s1.charAt(i);
+            }
+            else{
+                //3 cuando encontramos espacio comprobar la ip que saca
+                if(!ip.contains(s2)){
+                    if(!resultado.equals("")){
+                        resultado += " ";
+                    }
+                    resultado += ip;
+                }
+                //4 vaciamos ip para sacar la siguiente
+                ip = "";
+            }
+        }
+        //5 comprobar la última IP (porque no termina en espacio)
+        if(!ip.equals("")){
+            if(!ip.contains(s2)){
+                if(!resultado.equals("")){
+                    resultado += " ";
+                }
+                resultado += ip;
+            }
+        }
+        return resultado;
     }
 
 
@@ -204,7 +234,8 @@ public class EjerciciosString {
      * según el mes pasado por parámetro. (Las Fechas están separadas por espacios y todas son fechas validas)
      * La ristra resultado deberá estar compuesta por todas las fechas de la primera ristra que
      * NO contengan el mes.
-     * Nota: las fechas están en formato "dd/mm/aaaa" y el mes en formato "NOMBRE"
+     * Nota: las fechas están en formato "dd/
+     * mm/aaaa" y el mes en formato "NOMBRE"
      *
      * @param s1: Lista de Fechas
      * @param s2: Nombre del Mes a filtrar
@@ -220,7 +251,42 @@ public class EjerciciosString {
      *
      */
     public static String FiltrarFecha (String s1, String s2){
-        return "";
+        String resultado = "";
+        //1 Switch que pase los meses de letra a numero
+        String mesANumero = switch (s2.toUpperCase()) {
+            case "ENERO" -> "01";
+            case "FEBRERO" -> "02";
+            case "MARZO" -> "03";
+            case "ABRIL" -> "04";
+            case "MAYO" -> "05";
+            case "JUNIO" -> "06";
+            case "JULIO" -> "07";
+            case "AGOSTO" -> "08";
+            case "SEPTIEMBRE" -> "09";
+            case "OCTUBRE" -> "10";
+            case "NOVIEMBRE" -> "11";
+            case "DICIEMBRE" -> "12";
+            default -> "00";
+        };
+        String fecha = "";
+        s1 = s1 + " ";
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != ' ') {
+                fecha += s1.charAt(i);
+            } else {
+                if (!fecha.isEmpty()) {
+                    String mesEnFecha = fecha.substring(3, 5);
+                    if (!mesEnFecha.equals(mesANumero)) {
+                        if (!resultado.isEmpty()) {
+                            resultado += " ";
+                        }
+                        resultado += fecha;
+                    }
+                }
+                fecha = "";
+            }
+        }
+        return resultado;
     }
 
 
